@@ -34,20 +34,23 @@ if ('development' == app.get('env')) {
 
 // App root URL will redirect to Users list
 app.get('/', function(req, res){
-  res.redirect('/users', {
-    title: 'App42PaaS Express MySql Application'
+  var collection = db.get('usercollection');
+  collection.find({},{},function(e,docs){
+    res.render('users', {
+      "users" : docs
+    });
   });
 });
 
 // List all Users details
-app.get('/users', function (req, res) {
-  var collection = db.get('usercollection');
-    collection.find({},{},function(e,docs){
-      res.render('users', {
-        "users" : docs
-      });
-    });
-});
+// app.get('/users', function (req, res) {
+//   var collection = db.get('usercollection');
+//     collection.find({},{},function(e,docs){
+//       res.render('users', {
+//         "users" : docs
+//       });
+//     });
+// });
 
 // Add a new User
 app.get("/users/new", function (req, res) {
@@ -80,7 +83,7 @@ app.post("/users", function (req, res) {
       // If it worked, set the header so the address bar doesn't still say /adduser
       res.location("users");
       // And forward to success page
-      res.redirect("/users");
+      res.redirect("/");
     }
   });
 });
