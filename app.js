@@ -42,16 +42,6 @@ app.get('/', function(req, res){
   });
 });
 
-// List all Users details
-// app.get('/users', function (req, res) {
-//   var collection = db.get('usercollection');
-//     collection.find({},{},function(e,docs){
-//       res.render('users', {
-//         "users" : docs
-//       });
-//     });
-// });
-
 // Add a new User
 app.get("/users/new", function (req, res) {
   res.render("new", {
