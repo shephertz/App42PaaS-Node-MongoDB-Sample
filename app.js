@@ -11,7 +11,7 @@ var path = require('path');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/nodedb');
+var db = monk('<User Name>:<Password>@<VM IP>:<VM PORT>/<Database name>');
 
 var app = express();
 
