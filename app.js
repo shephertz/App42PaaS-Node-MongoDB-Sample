@@ -12,6 +12,7 @@ var path = require('path');
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('<User Name>:<Password>@<VM IP>:<VM PORT>/<Database name>');
+// var db = monk('localhost:27017/nodedb');
 
 var app = express();
 
@@ -37,7 +38,7 @@ app.get('/', function(req, res){
   var collection = db.get('usercollection');
   collection.find({},{},function(e,docs){
     res.render('users', {
-      "users" : docs
+      "users" : docs, title: 'App42PaaS Express MongoDb Application'
     });
   });
 });
